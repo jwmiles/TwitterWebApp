@@ -15,9 +15,10 @@
 	 
 		<div>
 		<label>
-      Please select a language to search in<br>
+       Select a language<br>
 	  </label>	
 		<select name = "lang">
+		<option value=""></option>
 	<option value="en">English</option>
 	<option value="es">Spanish</option>
 	<option value="de">German</option>
@@ -25,21 +26,21 @@
 	<option value="it">Italian</option>
 	</select>
 	
-	<br><br><br><br>
-	
+	<br><br><br>
+	<label>
 	Please select country to search in<br>
 	  </label>	
 		<select name = "country">
 		<option value=""></option>
-	<option value="35.2799600,-80.9545120,20mi">Charlotte</option>
-	<option value="es">America</option>
-	<option value="de">France</option>
-	<option value="fr">Germany</option>
-	<option value="it">Italy</option>
-	<option value="it">Spain</option>
+	<option value="35.2799600,-80.9545120,50mi">Charlotte</option>
+	<option value="39.858648,-99.69866,1768.6km">America</option>
+	<option value="46.907679,2.470958,417.49km">France</option>
+	<option value="51.085608,10.319895,209.51mi">Germany</option>
+	<option value="42.808529,12.560349,305km">Italy</option>
+	<option value="40.085967,-2.970021,399.02km">Spain</option>
 	</select>
 	
-	<br><br><br><br>
+	<br><br><br>
 	
   </div>
   <input type="submit" value="Submit">
@@ -108,8 +109,8 @@
 
         // Set chart options
         var options = {'title':'Tweets organized by country',
-                       'width':800,
-                       'height':600};
+                       'width':600,
+                       'height':400};
 
         // Instantiate and draw our chart, passing in some options.
         var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
@@ -122,5 +123,5 @@
   </ul>
   
 {{else}}
-  <p>Search for matching words above!</p>
+  <p align="center"">Search for matching words above...</p>
 {{/if}}

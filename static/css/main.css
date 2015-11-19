@@ -1,27 +1,112 @@
 
-#results {
+html
+{
+background-color: #0099cc;
+
+}
+
+h1
+{
+    margin-left: auto;
+    margin-right: auto;
+    width: 6.5em;
+    color: #7FFFD4;
+}
+form
+{
+    margin: auto;
+    width: 50%;
+    border:3px solid #7FFFD4;
+    padding: 10px;
+
+}
+div 
+{
+    padding-top: 0cm;
+    font-weight: bold;
+    display: block;
+    width: 100%;
+    color: #7FFFD4;
+
+}
+label 
+{
+    display: block;
+    text-align: center;
+    line-height: 150%;
+    font-size: 2em;
+    color: #7FFFD4;
+
+}
+select 
+{
+    display: block;
+    margin: 0 auto;
+
+}
+input 
+{
+    display: block;
+    margin: 0 auto;
+
+}
+
+
+
+#results 
+{
+  text-align: left;
   padding:0; 
+
   margin:0;
+
 }
-#results li {
+
+#results li 
+{
+
   list-style-type:none;
+
   padding: 15px 5px;
+
   border: solid 1px #555;
+
   border-top: none;
+
   max-width: 600px;
+
+  color: #7FFFD4;
+
+}
+
+#results li:first-child 
+{
   
+   border-top : solid 1px #555;
+
 }
-#results li:first-child {
-  border-top : solid 1px #555;
-}
-#results li:hover{
+
+/*#results li:hover
+{
+
   box-shadow: 0px 0px 7px 1px #555;
+
   background-color: #FAFAFA;
+
 }
-#results li .heading{
+*/
+#results li .heading
+{
+
   margin-bottom: 10px;
+
   font-size: 14px;
+
 }
-span.label {
+
+span.label 
+{
+
   font-weight: bold;
+
 }
