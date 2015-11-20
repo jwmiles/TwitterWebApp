@@ -6,6 +6,7 @@ var Twitter = require('twitter');
 var bodyParser = require('body-parser');
 
 var app = express();
+var twitterResults;
 
 
 // Set static folder
@@ -31,13 +32,49 @@ var client = new Twitter({
 // Start Server
 var server = app.listen(3000);
 
+
+var twitterResults;
+
+function queryTwitter(req, callback) {
+callback = (typeof callback === 'function')? callback : function(){};
+
+if(!twitterResults) {
+
+client.get('search/tweets', {q: req.body.match, geocode : req.body.country, lang: req.body.lang, count: 100},  function(error, tweets, response){
+	
+   if(error){
+     console.log('There was an error.', error);
+   }
+   twitterResults = {search: tweets.search_metadata, results: tweets.statuses};
+   callback();
+ });
+
+} else {
+return twitterResults;
+callback();
+}
+
+}
+
+
+
+
+
 /* 
  * Routing
  */
  //Home
-app.get('/', function(req, res){;
-  res.render('index', {});
+ 
+ app.get('/', function(req, res) {;
+res.render ('index' , {});
 });
+
+ app.post('/', function(req, res){;
+queryTwitter(req, function(){
+     res.status(200).render('index', twitterResults);   
+});
+ 
+
 
 //Summary Page
 app.get('/summary', function(req, res) {;
@@ -51,12 +88,4 @@ app.get('/api', function(req, res){
   });
 });
 
-//POST for results
-app.post('/', function (req, res) {
-  client.get('search/tweets', {q: req.body.match, geocode : req.body.country, lang: req.body.lang, count: 100},  function(error, tweets, response){
-    if(error){
-      res.status(400).send('There was an error.', error);
-    }
-    res.status(200).render('index', {search: tweets.search_metadata, results: tweets.statuses});
-  });
-});
+
