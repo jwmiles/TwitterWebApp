@@ -34,11 +34,13 @@ var server = app.listen(3000);
 
 
 var twitterResults;
+var oldBody;
 
 function queryTwitter(req, callback) {
 callback = (typeof callback === 'function')? callback : function(){};
 
-if(!twitterResults) {
+if(oldBody!=req) {
+	oldBody = req;
 
 client.get('search/tweets', {q: req.body.match, geocode : req.body.country, lang: req.body.lang, count: 100},  function(error, tweets, response){
 	
@@ -65,27 +67,27 @@ callback();
  */
  //Home
  
- app.get('/', function(req, res) {;
+ app.get('/', function(req, res) {
 res.render ('index' , {});
 });
 
- app.post('/', function(req, res){;
-queryTwitter(req, function(){
-     res.status(200).render('index', twitterResults);   
+ app.post('/', function(req, res){  
+ queryTwitter(req, function(){
+   res.status(200).render('index', twitterResults);  
+ });  
 });
  
 
 
 //Summary Page
-app.get('/summary', function(req, res) {;
+app.get('/summary', function(req, res) {
  res.render ('summary' , {});
 });
 
 //API view
 app.get('/api', function(req, res){
-   client.get('search/tweets', {q: 'node.js'}, function(error, tweets, response){
-    res.send(tweets);
-  });
+   res.send(twitterResults);
 });
+
 
 
